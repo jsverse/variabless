@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "ES2017",
+    "declaration": true,
+    "lib": [
+      "es2017",
+      "esnext",
+      "es2015"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "sourceMap": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "__tests__"
+  ]
+}

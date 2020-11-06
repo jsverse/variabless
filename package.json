@@ -1,0 +1,70 @@
+{
+  "name": "postcss-js-to-vars",
+  "version": "1.0.0",
+  "description": "PostCSS plugin for transforming a TS/JS/JSON file to css variables",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "variables",
+    "ts",
+    "js",
+    "json"
+  ],
+  "scripts": {
+    "release": "standard-version --infile ./CHANGELOG.md",
+    "commit": "git-cz",
+    "prebuild": "npm run clean:dist",
+    "build": "tsc",
+    "postbuild": "node ./scripts/post-build.js",
+    "test": "jest-ci --coverage && eslint-ci .",
+    "clean:dist": "rm -rf dist"
+  },
+  "author": "Shahar Kazaz",
+  "license": "MIT",
+  "repository": "https://github.com/shaharkazaz/postcss-js-to-vars",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "dependencies": {
+    "flat": "^5.0.2",
+    "ts-node": "^9.0.0",
+    "postcss": "^8.1.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-angular": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/flat": "^5.0.1",
+    "git-cz": "^4.7.1",
+    "husky": "^4.3.0",
+    "import-conductor": "^2.2.1",
+    "jest": "^26.4.2",
+    "jest-ci": "^0.1.1",
+    "jest-cli": "^26.4.2",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "standard-version": "^9.0.0",
+    "tsconfig-paths": "^3.9.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "import-conductor --staged",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "statements": 100
+      }
+    }
+  }
+}
