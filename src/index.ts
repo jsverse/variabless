@@ -1,21 +1,24 @@
-import { Root } from 'postcss';
+import chokidar from 'chokidar';
 
-import { applyStyle } from './applyStyle';
-import { defaultOptions, setConfig } from './config';
-import { getVariablesConfig } from './getVariablesConfig';
-import { Config } from './types';
+import { applyVariableRules } from './applyVariableRules';
+import { WebpackConfig } from './types';
 
-module.exports = function jsToVars(userConfig: Partial<Config> = {}) {
-  const config = { ...defaultOptions, ...userConfig };
-  setConfig(config);
-  const styles = getVariablesConfig(config.source);
+export class JsToCssVarsWebpackPlugin {
+  constructor(private config: WebpackConfig) {
+    applyVariableRules(this.config);
+  }
 
-  return {
-    postcssPlugin: 'postcss-js-to-vars',
-    Once(root: Root) {
-      if (!root.source.input.file.endsWith(config.target)) return;
-      applyStyle(root, styles);
+  apply() {
+    if (!this.config.watch) return;
+
+    const watcher = chokidar.watch(this.config.srcPath, {
+      ignored: /(^|[\/\\])\../,
+      ignoreInitial: true,
+      persistent: true
+    });
+
+    for (let trigger of ['add', 'change', 'unlink']) {
+      watcher.on(trigger, path => applyVariableRules(this.config));
     }
-  };
-};
-module.exports.postcss = true;
+  }
+}

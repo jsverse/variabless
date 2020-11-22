@@ -1,31 +1,30 @@
-type Map = Record<string, any>;
-
-export interface VariableOptions {
-  selector?: string;
-  ruleConfig?: { rulePostfix?: string; cssProp: string }[];
-  delimiter?: Delimiter;
-}
-
-export type VariableConfig = VariableOptions & {
-  [k: string]: Map;
-};
-
-export const enum Delimiter {
-  Kebab_Case = 'kebab',
-  Snake_Case = 'snake',
-  None = 'none'
+export interface Rule {
+  value: string | object;
+  variableName: string | ((cssProperty: string, valueKey?: string) => string);
+  selector?: string | ((cssProperty: string, valueKey?: string) => string);
+  property?: string | string[];
+  appendVariablesTo: string;
+  appendSelectorsTo: string;
 }
 
 export interface Config {
-  target: string;
-  source: string;
+  outputPath: string;
+  srcPath: string;
 }
 
-export interface CacheEntity {
-  variables: { prop: string; value: string }[];
-  variablesKeys: string[];
+export interface WebpackConfig extends Config {
+  watch?: boolean;
 }
 
-type VariablesMap = Record<string, string | VariableConfig>;
+export interface VariableDefinition {
+  prop: string;
+  value: any;
+}
 
-export type VariablesMapping = Record<string, VariablesMap>;
+export interface SelectorDefinition extends VariableDefinition {
+  selector: string;
+}
+
+export const TOKENS = ['valueKey', 'property'] as const;
+
+export type TokensValueMap = Partial<Record<typeof TOKENS[number], any>>;

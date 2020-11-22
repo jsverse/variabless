@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 
 import { readFile } from './helpers/readFile';
-import { VariablesMapping } from './types';
+import { Rule } from './types';
 
 const fileResolvers = {
   ts: tsResolver,
@@ -9,7 +9,9 @@ const fileResolvers = {
   json: jsonResolver
 };
 
-export function getVariablesConfig(source: string): VariablesMapping {
+type RulesMap = Record<string, Record<string, Rule>>;
+
+export function getRules(source: string): RulesMap {
   const file = resolve(process.cwd(), source);
   const [, fileExtension] = file.match(/\.(.+)$/);
   const resolver = fileResolvers[fileExtension];
@@ -17,7 +19,7 @@ export function getVariablesConfig(source: string): VariablesMapping {
   return resolver(file);
 }
 
-function tsResolver(file): VariablesMapping {
+function tsResolver(file): RulesMap {
   require('ts-node').register({
     compilerOptions: {
       module: 'commonjs',
@@ -29,10 +31,10 @@ function tsResolver(file): VariablesMapping {
   return require(file);
 }
 
-function jsResolver(file): VariablesMapping {
+function jsResolver(file): RulesMap {
   return require(file);
 }
 
-function jsonResolver(file): VariablesMapping {
-  return JSON.parse(readFile(file));
+function jsonResolver(file): RulesMap {
+  return { rules: JSON.parse(readFile(file)) };
 }
