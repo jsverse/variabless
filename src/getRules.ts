@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { readFile } from './helpers/readFile';
 import { Rule } from './types';
 
+let tsNodeInitiated = false;
 const fileResolvers = {
   ts: tsResolver,
   js: jsResolver,
@@ -20,18 +21,23 @@ export function getRules(source: string): RulesMap {
 }
 
 function tsResolver(file): RulesMap {
-  require('ts-node').register({
-    compilerOptions: {
-      module: 'commonjs',
-      target: 'es5',
-      lib: ['esnext', 'dom']
-    }
-  });
+  if (!tsNodeInitiated) {
+    require('ts-node').register({
+      compilerOptions: {
+        module: 'commonjs',
+        target: 'es5',
+        lib: ['esnext', 'dom']
+      }
+    });
+    tsNodeInitiated = true;
+  }
 
-  return require(file);
+  return jsResolver(file);
 }
 
 function jsResolver(file): RulesMap {
+  delete require.cache[file];
+
   return require(file);
 }
 
