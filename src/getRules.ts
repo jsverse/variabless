@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 
 import { readFile } from './helpers/readFile';
-import { Rule } from './types';
+import { RulesMap } from './types';
 
 let tsNodeInitiated = false;
 const fileResolvers = {
@@ -9,8 +9,6 @@ const fileResolvers = {
   js: jsResolver,
   json: jsonResolver
 };
-
-type RulesMap = Record<string, Record<string, Rule>>;
 
 export function getRules(source: string): RulesMap {
   const file = resolve(process.cwd(), source);

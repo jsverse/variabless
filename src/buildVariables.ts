@@ -1,46 +1,44 @@
-import { writeFileSync } from 'fs';
-
 import { generateCSS } from './generateCSS';
-import { getRules } from './getRules';
 import { coerceArray, last } from './helpers/array';
 import { isString } from './helpers/validators';
 import { resolveName } from './resolveName';
-import { Config, SelectorDefinition, TokensValueMap, VariableDefinition } from './types';
+import { NameResolver, RulesMap, SelectorDefinition, TokensValueMap, VariableDefinition } from './types';
 import { validateRule } from './validateRule';
 
-export function applyVariableRules(config: Config) {
-  const ruleSets = getRules(config.srcPath);
+export function buildVariables(rulesMap: RulesMap): string {
   const varContainers: Record<string, { selectors: SelectorDefinition[]; variables: VariableDefinition[] }> = {};
 
-  for (const [ruleSetKey, rules] of Object.entries(ruleSets)) {
+  for (const [ruleSetKey, rules] of Object.entries(rulesMap)) {
     for (const [ruleKey, rule] of Object.entries(rules)) {
       validateRule({ ...rule, ruleSetKey, ruleKey });
 
-      const { variableName, value: ruleValue, appendVariablesTo = ':root', property, selector } = rule;
+      const { variableName, value: ruleValue, appendVariablesTo = ':root', properties } = rule;
       if (!varContainers[appendVariablesTo]) {
         varContainers[appendVariablesTo] = { selectors: [], variables: [] };
       }
       const current = varContainers[appendVariablesTo];
 
       const tokensMap: TokensValueMap = {};
-      const curried = resolver => resolveName(resolver, tokensMap);
+      const curried = (resolver: string | NameResolver) => resolveName(resolver, tokensMap);
       const addVariable = value =>
         current.variables.push({
           prop: `--${curried(variableName)}`,
           value
         });
-      const addSelector = prop =>
+      const addSelector = (prop: string, selector: string | NameResolver) =>
         current.selectors.push({
           selector: curried(selector),
           prop,
           value: `var(${last(current.variables).prop});`
         });
       const applyRule = value => {
-        if (property) {
-          for (const cssProp of coerceArray(property)) {
-            tokensMap.property = cssProp;
-            addVariable(value);
-            addSelector(cssProp);
+        if (properties) {
+          for (const { prop, selector } of coerceArray(properties)) {
+            for (const cssProp of coerceArray(prop)) {
+              tokensMap.property = cssProp;
+              addVariable(value);
+              addSelector(cssProp, selector);
+            }
           }
         } else {
           addVariable(value);
@@ -57,6 +55,6 @@ export function applyVariableRules(config: Config) {
       }
     }
   }
-  const css = generateCSS(varContainers);
-  writeFileSync(config.outputPath, css);
+
+  return generateCSS(varContainers);
 }

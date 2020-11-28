@@ -1,11 +1,11 @@
 import chokidar from 'chokidar';
 
-import { applyVariableRules } from './applyVariableRules';
+import { applyRules } from './applyRules';
 import { WebpackConfig } from './types';
 
-export class JsToCssVarsWebpackPlugin {
+export class VariablessWebpackPlugin {
   constructor(private config: WebpackConfig) {
-    applyVariableRules(this.config);
+    applyRules(this.config);
   }
 
   apply() {
@@ -18,7 +18,7 @@ export class JsToCssVarsWebpackPlugin {
     });
 
     for (let trigger of ['add', 'change', 'unlink']) {
-      watcher.on(trigger, path => applyVariableRules(this.config));
+      watcher.on(trigger, path => applyRules(this.config));
     }
   }
 }

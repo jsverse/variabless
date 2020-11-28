@@ -1,10 +1,13 @@
+export type NameResolver = (params: TokensValueMap) => string;
+export interface PropertyConfig {
+  prop: string | string[];
+  selector: string | NameResolver;
+}
 export interface Rule {
-  value: string | object;
-  variableName: string | ((cssProperty: string, valueKey?: string) => string);
-  selector?: string | ((cssProperty: string, valueKey?: string) => string);
-  property?: string | string[];
-  appendVariablesTo: string;
-  appendSelectorsTo: string;
+  value: string | number | object;
+  variableName: string | NameResolver;
+  properties?: PropertyConfig | PropertyConfig[];
+  appendVariablesTo?: string;
 }
 
 export interface Config {
@@ -28,3 +31,5 @@ export interface SelectorDefinition extends VariableDefinition {
 export const TOKENS = ['valueKey', 'property'] as const;
 
 export type TokensValueMap = Partial<Record<typeof TOKENS[number], any>>;
+
+export type RulesMap = Record<string, Record<string, Rule>>;
