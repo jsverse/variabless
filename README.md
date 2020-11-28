@@ -1,6 +1,6 @@
 <br />
 <p align="center">
- <img width="50%" height="50%" src="./logo.svg">
+ <img width="70%" height="50%" src="./logo.svg">
 </p>
 
 [![commitizen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)]()
