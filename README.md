@@ -95,10 +95,10 @@ The Variabless source file exports a map of rules which defines how to create th
 // src/theme.ts
 export const coreStyles: Record<string, Rule> = {
   myVariable: {
-    value: string | object;
-    variableName: string | Resolver;
-    appendVariablesTo?: string;
-    properties?: PropertyConfig | PropertyConfig[];
+    value: string | object,
+    variableName: string | Resolver,
+    appendVariablesTo?: string,
+    properties?: PropertyConfig | PropertyConfig[],
   },
   ...
 };
@@ -141,7 +141,7 @@ When the rule has a primitive value the `variableName` should be a `string`:
 Will produce:
 
 ```css
---font-family: 'Roboto'
+--font-family: 'Roboto';
 ```
 
 
@@ -169,8 +169,8 @@ The following rule:
 Will produce the following variables:
 
 ```css
---b1-color: 'lightblue'
---b2-color: 'blue'
+--b1-color: 'lightblue';
+--b2-color: 'blue';
 ```
 ##### Resolver function
 The resolver function is similar to the tokenized string but gives you more flexibility:
@@ -201,8 +201,8 @@ The following rule:
 Will produce the following variables:
 
 ```css
---B1-color: 'lightblue'
---B2-color: 'blue'
+--B1-color: 'lightblue';
+--B2-color: 'blue';
 ```
 
 #### `appendVariablesTo` - string
