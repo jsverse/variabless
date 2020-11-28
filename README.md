@@ -73,7 +73,7 @@ module.exports = {
     new VariablessWebpackPlugin({
         watch?: boolean, // listen to changes
         srcPath: 'src/theme.ts', // the variables rules file
-        outputPath: 'src/theme.css', // generated css file location
+        outputPath: 'src/theme.css', // generated css file path
     }),
   ]
 };
