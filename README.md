@@ -1,9 +1,9 @@
 <br />
-<p align="center" style="margin-bottom: 20px">
+<p align="center">
  <img width="70%" height="50%" src="./logo.svg">
 </p>
-
-<p style="display: flex; justify-content: center; width: 100%">
+<p></p>
+<p align="center">
     <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
     <img src="https://img.shields.io/badge/codeof-conduct-ff69b4.svg?style=flat-square">
