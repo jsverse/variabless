@@ -17,13 +17,13 @@ in js and css files.
 
 ## Features
 
-✅&nbsp;Convert js to css variables.  
-✅&nbsp;Single source of styling across the app.  
-✅&nbsp;Supports JS, TS and JSON file formats.  
-✅&nbsp;Webpack Plugin.  
-✅&nbsp;Easy CSS rules creation.  
+✅&nbsp;&nbsp;Convert js to css variables.  
+✅&nbsp;&nbsp;Single source of styling across the app.  
+✅&nbsp;&nbsp;Supports JS, TS and JSON file formats.  
+✅&nbsp;&nbsp;Webpack Plugin.  
+✅&nbsp;&nbsp;Easy CSS rules creation.  
 
-👉&nbsp;See the [live demo]().
+👉&nbsp;&nbsp;See the [live demo]().
 
 ## Table of content
 
