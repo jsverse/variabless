@@ -98,7 +98,7 @@ export const coreStyles: Record<string, Rule> = {
     value: string | object;
     variableName: string | Resolver;
     appendVariablesTo?: string;
-    properties: PropertyConfig | PropertyConfig[];
+    properties?: PropertyConfig | PropertyConfig[];
   },
   ...
 };
