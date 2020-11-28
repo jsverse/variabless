@@ -2,7 +2,7 @@
 <p align="center">
  <img width="70%" height="50%" src="./logo.svg">
 </p>
-<p></p>
+<p>&nbsp;</p>
 <p align="center">
     <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
@@ -11,17 +11,19 @@
     <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square"></a>
 </p>
 
-Variabless allows you to manage application wide css variables in a single source of truth. Variablesss will convert a js definitions file to css variables allowing you to use those values both in js and css files.
+Variabless allows you to manage application wide css variables in a single source of truth. 
+Variablesss will convert a js definitions file to css variables allowing you to use those values both 
+in js and css files.
 
 ## Features
 
-✅ Convert js to css variables.  
-✅ Single source of styling accross the app.  
-✅ Supports JS, TS and JSON file formats.  
-✅ Webpack Plugin.  
-✅ Easy CSS rules creation.  
+✅&nbsp;Convert js to css variables.  
+✅&nbsp;Single source of styling across the app.  
+✅&nbsp;Supports JS, TS and JSON file formats.  
+✅&nbsp;Webpack Plugin.  
+✅&nbsp;Easy CSS rules creation.  
 
-👉 See the [live demo]().
+👉&nbsp;See the [live demo]().
 
 ## Table of content
 
@@ -39,6 +41,7 @@ Variabless allows you to manage application wide css variables in a single sourc
 
 ## Installation
 Install the Variabless package via yarn or npm by running:
+
 ```bash
 npm i -D variabless
 yarn add -D variabless
@@ -48,7 +51,7 @@ yarn add -D variabless
 There are two ways you can use Variabless:
 
 ### CLI
-Add the following scripts to your package.json file and execute when needed:
+Add the following scripts to your `package.json` file:
 
 ```json
 {
@@ -103,7 +106,7 @@ export const coreStyles: Record<string, Rule> = {
 
 Where each rule has the following options:
 
-####`value` - string | number | object
+#### `value` - string | number | object
 The css variable value, can be either string, number or a map:
 
 ```javascript
@@ -122,9 +125,10 @@ The css variable value, can be either string, number or a map:
 
 When passing a map, a variable will be created for each value.
 
-####`variableName` - string | Resolver
+#### `variableName` - string | Resolver
 The css variable name.  
 When the rule has a primitive value the `variableName` should be a `string`:
+
 ```javascript
 {
   fontFamily: {
@@ -133,15 +137,19 @@ When the rule has a primitive value the `variableName` should be a `string`:
   },
 }
 ``` 
+
 Will produce:
+
 ```css
 --font-family: 'Roboto'
 ```
 
 
 When the rule's `value` is a map, we need to avoid name collisions, the `variableName` must be one of these two options:
+
 ##### Tokenized string
-We can pass a string containing special tokens which are replaced during the variable's creation:
+We can pass a string containing unique tokens which are replaced during the variable's creation:
+
 * `:valueKey`
 * `:property`
 
@@ -177,6 +185,7 @@ interface ResolverParams {
 ```
 
 The following rule: 
+
 ```javascript
 {
   blueColors: {
@@ -208,7 +217,7 @@ The selector hosting the generated variables, defaults to `:root`:
 
 #### `properties` - PropertyConfig | PropertyConfig[]
 It's a common practice to put frequently used styles in shared class or attribute.   
-Varibless allows you to easily create css selectors for those frequently used variables.  
+Varibless easily allows you to create css selectors for those frequently used variables.  
 
 Properties are defined as following:
 ```typescript
