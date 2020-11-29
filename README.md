@@ -1,6 +1,9 @@
 <br />
 <p align="center">
  <img width="70%" height="50%" src="./logo.svg">
+ <img width="70%" height="50%" src="./logo4.svg">
+ <img width="70%" height="50%" src="./logo2.svg">
+ <img width="70%" height="50%" src="./logo3.svg">
 </p>
 <p>&nbsp;</p>
 <p align="center">
