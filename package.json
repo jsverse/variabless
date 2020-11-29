@@ -1,7 +1,7 @@
 {
-  "name": "js-to-css-variables",
+  "name": "variabless",
   "version": "1.0.0",
-  "description": "PostCSS plugin for transforming a TS/JS/JSON file to css variables",
+  "description": "Transform JS/TS/JSON to css variables 💎",
   "keywords": [
     "postcss",
     "css",
@@ -11,6 +11,9 @@
     "js",
     "json"
   ],
+  "bin": {
+    "variabless": "index.js"
+  },
   "scripts": {
     "release": "standard-version --infile ./CHANGELOG.md",
     "commit": "git-cz",
@@ -22,7 +25,7 @@
   },
   "author": "Shahar Kazaz",
   "license": "MIT",
-  "repository": "https://github.com/shaharkazaz/postcss-js-to-vars",
+  "repository": "https://github.com/shaharkazaz/variabless",
   "engines": {
     "node": ">=10.0.0"
   },

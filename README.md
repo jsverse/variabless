@@ -17,13 +17,13 @@ in js and css files.
 
 ## Features
 
-✅&nbsp;&nbsp;Convert js to css variables.  
-✅&nbsp;&nbsp;Single source of styling across the app.  
-✅&nbsp;&nbsp;Supports JS, TS and JSON file formats.  
-✅&nbsp;&nbsp;Webpack Plugin.  
-✅&nbsp;&nbsp;Easy CSS rules creation.  
+✅ &nbsp;Convert js to css variables.  
+✅ &nbsp;Single source of styling across the app.  
+✅ &nbsp;Supports JS, TS and JSON file formats.  
+✅ &nbsp;Webpack Plugin.  
+✅ &nbsp;Easy CSS rules creation.  
 
-👉&nbsp;&nbsp;See the [live demo]().
+👉 &nbsp;Try it in the [playground]().
 
 ## Table of content
 
@@ -51,7 +51,7 @@ yarn add -D variabless
 There are two ways you can use Variabless:
 
 ### CLI
-Add the following scripts to your `package.json` file:
+Add the following script to your `package.json` file:
 
 ```json
 {
@@ -66,7 +66,7 @@ Just add the VariablessWebpackPlugin in your plugins list:
 
 ```javascript
 // webpack.config.js
-const { VariablessWebpackPlugin } = require('variabless');
+const { VariablessWebpackPlugin } = require('variabless/webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -147,7 +147,7 @@ Will produce:
 
 When the rule's `value` is a map, we need to avoid name collisions, the `variableName` must be one of these two options:
 
-##### Tokenized string
+#### Tokenized string
 We can pass a string containing unique tokens which are replaced during the variable's creation:
 
 * `:valueKey`
@@ -172,7 +172,8 @@ Will produce the following variables:
 --b1-color: 'lightblue';
 --b2-color: 'blue';
 ```
-##### Resolver function
+
+#### Resolver function
 The resolver function is similar to the tokenized string but gives you more flexibility:
 
 ```typescript
