@@ -1,3 +1,4 @@
+import { coerceArray } from './helpers/array';
 import { isString, isTokenizedString } from './helpers/validators';
 import { Rule } from './types';
 
@@ -5,22 +6,35 @@ interface options extends Rule {
   ruleKey: string;
   ruleSetKey: string;
 }
-export function validateRule({ ruleKey, ruleSetKey, variableName, value, property, selector }: options) {
+
+function collisionMsg(prop: string, value: any) {
+  return `Possible collision: expected '${prop}' to be a function or a tokenized string but got ${value}`;
+}
+
+export function validateRule({ ruleKey, ruleSetKey, variableName, value, properties }: options) {
+  const missingMsg = (missing, rest = '') => `Missing ${missing} name for: ${ruleSetKey} -> ${ruleKey} ${rest}`;
+
   if (!variableName) {
-    throw `Missing variable name for: ${ruleSetKey} -> ${ruleKey}`;
+    throw missingMsg('variable');
   }
 
-  if (property && !selector) {
-    throw `You must provide a selector when using properties!`;
-  }
-
-  if (!isString(value) && property) {
+  if (!isString(value)) {
     if (isString(variableName) && !isTokenizedString(variableName)) {
-      throw `Variable name must be a function or a tokenized string!`;
+      throw collisionMsg('variableName', variableName);
     }
+  }
 
-    if (isString(selector) && !isTokenizedString(selector)) {
-      throw `Selector must be a function or a tokenized string!`;
+  if (properties) {
+    for (const { prop, selector } of coerceArray(properties)) {
+      if (!selector) {
+        throw missingMsg('selector', `-> ${prop}`);
+      }
+
+      if (!isString(value) || coerceArray(prop).length > 1) {
+        if (isString(selector) && !isTokenizedString(selector)) {
+          throw collisionMsg('selector', variableName);
+        }
+      }
     }
   }
 }

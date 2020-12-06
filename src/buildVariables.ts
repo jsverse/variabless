@@ -20,28 +20,30 @@ export function buildVariables(rulesMap: RulesMap): string {
 
       const tokensMap: TokensValueMap = {};
       const curried = (resolver: string | NameResolver) => resolveName(resolver, tokensMap);
+      // Output spacing
+      const raws = { before: '\n    ' };
       const addVariable = value =>
         current.variables.push({
           prop: `--${curried(variableName)}`,
-          value
+          value,
+          raws
         });
       const addSelector = (prop: string, selector: string | NameResolver) =>
         current.selectors.push({
           selector: curried(selector),
           prop,
-          value: `var(${last(current.variables).prop});`
+          value: `var(${last(current.variables).prop})`,
+          raws
         });
       const applyRule = value => {
+        addVariable(value);
         if (properties) {
           for (const { prop, selector } of coerceArray(properties)) {
             for (const cssProp of coerceArray(prop)) {
               tokensMap.property = cssProp;
-              addVariable(value);
               addSelector(cssProp, selector);
             }
           }
-        } else {
-          addVariable(value);
         }
       };
 

@@ -1,5 +1,4 @@
-import { Root } from 'postcss';
-import Rule from 'postcss/lib/rule';
+import { Root, Rule } from 'postcss';
 
 import { SelectorDefinition, VariableDefinition } from './types';
 
@@ -8,7 +7,7 @@ export function generateCSS(
 ) {
   const root = new Root();
   for (const [key, { variables, selectors }] of Object.entries(containers)) {
-    const rule = new Rule({ selector: key });
+    const rule = new Rule({ selector: key, raws: { semicolon: true } });
 
     for (const variable of variables) {
       rule.append(variable);
@@ -17,7 +16,7 @@ export function generateCSS(
     root.append(rule);
 
     for (const { selector, ...node } of selectors) {
-      const selectorRule = new Rule({ selector }).append(node);
+      const selectorRule = new Rule({ selector, raws: { before: '\n\n' } }).append(node);
       root.append(selectorRule);
     }
   }

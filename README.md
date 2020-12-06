@@ -1,9 +1,6 @@
 <br />
 <p align="center">
  <img width="70%" height="50%" src="./logo.svg">
- <img width="70%" height="50%" src="./logo4.svg">
- <img width="70%" height="50%" src="./logo2.svg">
- <img width="70%" height="50%" src="./logo3.svg">
 </p>
 <p>&nbsp;</p>
 <p align="center">
@@ -183,7 +180,7 @@ The resolver function is similar to the tokenized string but gives you more flex
 type Resolver = (params: ResolverParams) => string;
 
 interface ResolverParams {
-  valueKey: string; 
+  valueKey?: string; 
   property?: string;
 } 
 ```
@@ -255,7 +252,7 @@ The following rule:
       b2: 'blue'
     },
     variableName: ':valueKey-color',
-    property: [{
+    properties: [{
       prop: 'color',
       selector: '.:valueKey-:property'
     }, {

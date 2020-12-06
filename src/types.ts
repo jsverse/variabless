@@ -22,6 +22,7 @@ export interface WebpackConfig extends Config {
 export interface VariableDefinition {
   prop: string;
   value: any;
+  raws: any;
 }
 
 export interface SelectorDefinition extends VariableDefinition {
