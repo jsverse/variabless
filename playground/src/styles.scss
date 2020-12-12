@@ -1,0 +1,42 @@
+@import '~monaco-editor/min/vs/editor/editor.main';
+
+body {
+  background-color: #0f0f0f;
+  min-height: 100vh;
+  height: 100vh;
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}

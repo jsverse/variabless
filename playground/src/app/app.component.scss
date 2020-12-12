@@ -1,0 +1,110 @@
+@import "arrow-aniamtion";
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.logo {
+  flex-basis: 9%;
+  max-height: 9%;
+  margin: 44px 0 40px 0;
+
+  & > div {
+    position: relative;
+  }
+}
+
+.playground {
+  position: absolute;
+  color: white;
+  bottom: -70px;
+  transform: rotate(-10deg);
+  right: -50px;
+  font-size: 55px;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+}
+
+.editors {
+  flex-basis: 75%;
+  overflow: hidden;
+
+  .editor {
+    width: 40%;
+    color: #aeacac;
+    height: 100%;
+
+    .title {
+      font-size: 18px;
+      font-weight: normal;
+      font-family: monospace;
+    }
+  }
+}
+
+.copy-code {
+  cursor: pointer;
+  color: #aeacac;
+  width: 85px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(8, 216, 166, 0.8);
+  background-color: transparent;
+  transition: all .2s ease-in-out;
+  padding: 3px 5px;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: monospace;
+  user-select: none;
+  &:hover {
+    //background-color: rgba(8, 216, 166);
+    border-bottom-color: transparent;
+    color: rgba(8, 216, 166);
+  }
+}
+
+.download-icon {
+  cursor: pointer;
+  transition: background-color .2s ease-in-out;
+
+}
+
+.ts-icon {
+  path {
+    fill: #aeacac;
+    transition: fill .2s ease-in-out;
+  }
+  &:hover {
+    background-color: white;
+
+    path {
+      fill: #007acc;
+    }
+  }
+}
+
+
+.js-icon {
+  background-color: #aeacac;
+  &:hover {
+    background-color: #F7DF1E;
+  }
+}
+
+.json-icon {
+  height: 21px;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: monospace;
+  background-color: #aeacac;
+  color: #0f0f0f;
+  padding-left: 5px;
+  padding-right: 2px;
+  display: flex;
+  align-items: flex-end;
+
+  &:hover {
+    background-color: #F85656;
+  }
+}
