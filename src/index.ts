@@ -1,24 +1,31 @@
-import chokidar from 'chokidar';
+#!/usr/bin/env node
+// import-conductor-skip
+import commandLineArgs from 'command-line-args';
+import commandLineUsage from 'command-line-usage';
+import ora from 'ora';
 
+// @ts-ignore
+import pck from './package.json';
+import { optionDefinitions, sections } from './cliOptions';
 import { applyRules } from './applyRules';
-import { WebpackConfig } from './types';
 
-export class VariablessWebpackPlugin {
-  constructor(private config: WebpackConfig) {
-    applyRules(this.config);
-  }
+const mainDefinitions = [{ name: 'command', defaultOption: true }];
 
-  apply() {
-    if (!this.config.watch) return;
+const mainOptions = commandLineArgs(mainDefinitions, { stopAtFirstUnknown: true });
+const argv = mainOptions._unknown || [];
 
-    const watcher = chokidar.watch(this.config.srcPath, {
-      ignored: /(^|[\/\\])\../,
-      ignoreInitial: true,
-      persistent: true
-    });
+const config = commandLineArgs(optionDefinitions, {
+  camelCase: true,
+  argv
+});
+const { help, version } = config;
 
-    for (let trigger of ['add', 'change', 'unlink']) {
-      watcher.on(trigger, path => applyRules(this.config));
-    }
-  }
+if (help || version) {
+  const output = help ? commandLineUsage(sections) : pck.version;
+  console.log(output);
+  process.exit();
 }
+
+const spinner = ora({ spinner: { frames: ['•'] } }).start('Generating CSS file 🎨\n');
+applyRules(config);
+spinner.succeed('Generated file successfully 💎\n');

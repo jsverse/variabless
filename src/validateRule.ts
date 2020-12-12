@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import { coerceArray } from './helpers/array';
 import { isString, isTokenizedString } from './helpers/validators';
 import { Rule } from './types';
@@ -7,32 +9,52 @@ interface options extends Rule {
   ruleSetKey: string;
 }
 
-function collisionMsg(prop: string, value: any) {
-  return `Possible collision: expected '${prop}' to be a function or a tokenized string but got ${value}`;
+function logError(msg, path) {
+  console.error(chalk.red('\nError!'), `${msg}, see:`);
+  console.error(path, '\n');
+  process.exit(1);
 }
 
 export function validateRule({ ruleKey, ruleSetKey, variableName, value, properties }: options) {
-  const missingMsg = (missing, rest = '') => `Missing ${missing} name for: ${ruleSetKey} -> ${ruleKey} ${rest}`;
+  const rulePath = [ruleSetKey, ruleKey];
+  const createPath = (path: string | string[] = []) => rulePath.concat(coerceArray(path)).join(' -> ');
+  const missingMsg = (missing, path: string[] = [missing]) => logError(`missing '${missing}'`, createPath(path));
+  const collisionMsg = (prop: string, path: string[] = [prop]) =>
+    logError(`expected '${prop}' to be a function or a tokenized string`, createPath(path));
 
   if (!variableName) {
-    throw missingMsg('variable');
+    missingMsg('variable');
   }
 
   if (!isString(value)) {
     if (isString(variableName) && !isTokenizedString(variableName)) {
-      throw collisionMsg('variableName', variableName);
+      collisionMsg('variableName');
     }
   }
 
   if (properties) {
-    for (const { prop, selector } of coerceArray(properties)) {
+    if (!Array.isArray(properties)) {
+      logError(`expected 'properties' to be an array`, createPath('properties'));
+    }
+
+    for (let i = 0; i < properties.length; i++) {
+      let { prop, selector } = properties[i];
+      let validationTarget = 'prop';
+      const path = () => [`properties[${i}]`, validationTarget];
+
+      if (!prop) {
+        missingMsg('prop', path());
+      }
+
+      validationTarget = 'selector';
+
       if (!selector) {
-        throw missingMsg('selector', `-> ${prop}`);
+        missingMsg('selector', path());
       }
 
       if (!isString(value) || coerceArray(prop).length > 1) {
         if (isString(selector) && !isTokenizedString(selector)) {
-          throw collisionMsg('selector', variableName);
+          collisionMsg('selector', path());
         }
       }
     }

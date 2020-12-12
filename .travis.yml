@@ -1,6 +1,8 @@
 language: node_js
-cache: yarn
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: true
 node_js:
-  - node
-  - "12"
-  - "10"
+  - '10'

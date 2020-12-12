@@ -18,7 +18,7 @@ export class VariablessWebpackPlugin {
     });
 
     for (let trigger of ['add', 'change', 'unlink']) {
-      watcher.on(trigger, path => applyRules(this.config));
+      watcher.on(trigger, () => applyRules(this.config));
     }
   }
 }

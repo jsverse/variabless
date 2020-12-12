@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Transform JS/TS/JSON to css variables 💎",
   "keywords": [
-    "postcss",
     "css",
-    "postcss-plugin",
     "variables",
     "ts",
     "js",
@@ -18,6 +16,7 @@
     "access": "public"
   },
   "scripts": {
+    "contributors:add": "all-contributors add",
     "release": "standard-version --infile ./CHANGELOG.md",
     "commit": "git-cz",
     "prebuild": "npm run clean:dist",
@@ -33,8 +32,12 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
+    "chalk": "^4.1.0",
     "chokidar": "^3.4.3",
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.1",
     "flat": "^5.0.2",
+    "ora": "^5.1.0",
     "postcss": "^8.1.4",
     "ts-node": "^9.0.0"
   },
@@ -43,6 +46,7 @@
     "@commitlint/config-angular": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/flat": "^5.0.1",
+    "all-contributors-cli": "^6.19.0",
     "git-cz": "^4.7.1",
     "husky": "^4.3.0",
     "import-conductor": "^2.2.1",
@@ -51,8 +55,7 @@
     "jest-cli": "^26.4.2",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
-    "standard-version": "^9.0.0",
-    "tsconfig-paths": "^3.9.0"
+    "standard-version": "^9.0.0"
   },
   "husky": {
     "hooks": {

@@ -12,22 +12,25 @@ export function buildVariables(rulesMap: RulesMap): string {
     for (const [ruleKey, rule] of Object.entries(rules)) {
       validateRule({ ...rule, ruleSetKey, ruleKey });
 
-      const { variableName, value: ruleValue, appendVariablesTo = ':root', properties } = rule;
+      const { variableName, value: ruleValue, appendVariablesTo = ':root', properties = [] } = rule;
       if (!varContainers[appendVariablesTo]) {
         varContainers[appendVariablesTo] = { selectors: [], variables: [] };
       }
       const current = varContainers[appendVariablesTo];
 
       const tokensMap: TokensValueMap = {};
-      const curried = (resolver: string | NameResolver) => resolveName(resolver, tokensMap);
       // Output spacing
       const raws = { before: '\n    ' };
+
+      const curried = (resolver: string | NameResolver) => resolveName(resolver, tokensMap);
+
       const addVariable = value =>
         current.variables.push({
           prop: `--${curried(variableName)}`,
           value,
           raws
         });
+
       const addSelector = (prop: string, selector: string | NameResolver) =>
         current.selectors.push({
           selector: curried(selector),
@@ -35,14 +38,14 @@ export function buildVariables(rulesMap: RulesMap): string {
           value: `var(${last(current.variables).prop})`,
           raws
         });
+
       const applyRule = value => {
         addVariable(value);
-        if (properties) {
-          for (const { prop, selector } of coerceArray(properties)) {
-            for (const cssProp of coerceArray(prop)) {
-              tokensMap.property = cssProp;
-              addSelector(cssProp, selector);
-            }
+
+        for (const { prop, selector } of properties) {
+          for (const cssProp of coerceArray(prop)) {
+            tokensMap.property = cssProp;
+            addSelector(cssProp, selector);
           }
         }
       };
