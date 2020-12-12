@@ -12,7 +12,7 @@
 </p>
 
 Variabless allows you to manage application wide css variables in a single source of truth. 
-Variablesss will convert a js definitions file to css variables allowing you to use those values both 
+Variabless will convert a JS/TS/JSON definitions file to css variables allowing you to use those values both 
 in js and css files.
 
 ## Features
@@ -23,7 +23,7 @@ in js and css files.
 ✅ &nbsp;Webpack Plugin.  
 ✅ &nbsp;Easy CSS rules creation.  
 
-👉 &nbsp;Try it in the [playground]().
+👉 &nbsp;Try it in our [playground]().
 
 ## Table of content
 
@@ -61,8 +61,8 @@ Add the following script to your `package.json` file:
 Run `npm run variabless` to generate the css file.
 
 ### Webpack plugin
-The VariablessWebpackPlugin provides you with the ability to add/remove variables during development, while you're working on the project.
-Just add the VariablessWebpackPlugin in your plugins list:
+The `VariablessWebpackPlugin` provides you with the ability to add/remove variables during development, while you're working on the project.
+Just add the `VariablessWebpackPlugin` in your plugins list:
 
 ```javascript
 // webpack.config.js
@@ -98,7 +98,7 @@ export const coreStyles: Record<string, Rule> = {
     value: string | object,
     variableName: string | Resolver,
     appendVariablesTo?: string,
-    properties?: PropertyConfig | PropertyConfig[],
+    properties?: PropertyConfig[],
   },
   ...
 };
@@ -216,7 +216,7 @@ The selector hosting the generated variables, defaults to `:root`:
 }
 ```
 
-#### `properties` - PropertyConfig | PropertyConfig[]
+#### `properties` - PropertyConfig[]
 It's a common practice to put frequently used styles in shared class or attribute.   
 Varibless easily allows you to create css selectors for those frequently used variables.  
 
@@ -241,10 +241,10 @@ The following rule:
   fontFamily: {
     value: 'Roboto',
     variableName: 'font-family',
-    properties: {
+    properties: [{
       prop: 'font-family', 
       selector: '.font-family'
-    },
+    }],
   },
   blueColors: {
     value: {
@@ -291,3 +291,23 @@ body {
    
 }
 ``` 
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/shaharkazaz"><img src="https://avatars2.githubusercontent.com/u/17194830?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shahar Kazaz</b></sub></a><br /><a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Code">💻</a> <a href="#content-shaharkazaz" title="Content">🖋</a> <a href="#design-shaharkazaz" title="Design">🎨</a> <a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Documentation">📖</a> <a href="#example-shaharkazaz" title="Examples">💡</a> <a href="#ideas-shaharkazaz" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-shaharkazaz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
