@@ -22,7 +22,7 @@
     "prebuild": "npm run clean:dist",
     "build": "tsc",
     "postbuild": "node ./scripts/post-build.js",
-    "test": "jest-ci --coverage && eslint-ci .",
+    "test": "jest",
     "clean:dist": "rm -rf dist"
   },
   "author": "Shahar Kazaz",
@@ -42,11 +42,16 @@
     "ts-node": "^9.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-angular": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/flat": "^5.0.1",
     "all-contributors-cli": "^6.19.0",
+    "@types/jest": "^26.0.19",
+    "babel-jest": "^26.6.3",
     "git-cz": "^4.7.1",
     "husky": "^4.3.0",
     "import-conductor": "^2.2.1",
@@ -68,13 +73,5 @@
       "import-conductor --staged",
       "prettier --write"
     ]
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "coverageThreshold": {
-      "global": {
-        "statements": 100
-      }
-    }
   }
 }
