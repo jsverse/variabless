@@ -19,10 +19,6 @@ describe('validateRule', () => {
   }
 
   describe('variableName', () => {
-    it('should throw error when missing variable name', () => {
-      assertError({});
-    });
-
     it('should throw when passing multiple values and a static variableName', () => {
       assertNoError({ variableName: ':property' });
       assertNoError({ variableName: () => {} });

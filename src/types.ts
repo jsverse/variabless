@@ -5,7 +5,7 @@ export interface PropertyConfig {
 }
 export interface Rule {
   value: string | number | object;
-  variableName: string | NameResolver;
+  variableName?: string | NameResolver;
   properties?: PropertyConfig[];
   appendVariablesTo?: string;
 }

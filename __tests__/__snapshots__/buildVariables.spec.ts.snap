@@ -19,9 +19,6 @@ body.dark-theme {
 
 :root {
     --font-family: Roboto;
-    --font-regular: normal;
-    --font-medium: 500;
-    --font-bold: bold;
     --text10: 0.625rem;
     --text12: 0.75rem;
     --text14: 0.875rem;
@@ -49,15 +46,19 @@ body.dark-theme {
 }
 
 .font-weight-regular {
-    font-weight: var(--font-regular);
+    font-weight: normal;
 }
 
 .font-weight-medium {
-    font-weight: var(--font-medium);
+    font-weight: 500;
 }
 
 .font-weight-bold {
-    font-weight: var(--font-bold);
+    font-weight: bold;
+}
+
+.font-weight-custom {
+    font-weight: var(--foo);
 }
 
 .text10 {

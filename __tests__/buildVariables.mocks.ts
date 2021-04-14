@@ -49,9 +49,9 @@ export const rulesDefinitions: Record<string, Rule>[] = [
       value: {
         regular: 'normal',
         medium: 500,
-        bold: 'bold'
-      },
-      variableName: 'font-:valueKey'
+        bold: 'bold',
+        custom: 'var(--foo)'
+      }
     },
     fontSize: {
       properties: [

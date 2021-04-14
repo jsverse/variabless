@@ -22,10 +22,6 @@ export function validateRule({ ruleKey, ruleSetKey, variableName, value, propert
   const collisionMsg = (prop: string, path: string[] = [prop]) =>
     logError(`expected '${prop}' to be a function or a tokenized string`, createPath(path));
 
-  if (!variableName) {
-    missingMsg('variable');
-  }
-
   if (!isString(value)) {
     if (isString(variableName) && !isTokenizedString(variableName)) {
       collisionMsg('variableName');

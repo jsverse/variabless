@@ -1,8 +1,8 @@
 import { generateCSS } from './generateCSS';
-import { coerceArray, last } from './helpers/array';
+import { coerceArray } from './helpers/array';
 import { isString } from './helpers/validators';
 import { resolveName } from './resolveName';
-import { NameResolver, RulesMap, SelectorDefinition, TokensValueMap, VariableDefinition } from './types';
+import { NameResolver, Rule, RulesMap, SelectorDefinition, TokensValueMap, VariableDefinition } from './types';
 import { validateRule } from './validateRule';
 
 export function buildVariables(rulesMap: RulesMap): string {
@@ -24,28 +24,38 @@ export function buildVariables(rulesMap: RulesMap): string {
 
       const curried = (resolver: string | NameResolver) => resolveName(resolver, tokensMap);
 
-      const addVariable = value =>
-        current.variables.push({
+      const addVariable = (value: Rule['value']): VariableDefinition => {
+        const variableDef = {
           prop: `--${curried(variableName)}`,
           value,
           raws
-        });
+        };
+        current.variables.push(variableDef);
 
-      const addSelector = (prop: string, selector: string | NameResolver) =>
+        return variableDef;
+      };
+
+      const addSelector = (prop: string, selector: string | NameResolver, value: Rule['value']): void => {
         current.selectors.push({
           selector: curried(selector),
           prop,
-          value: `var(${last(current.variables).prop})`,
+          value,
           raws
         });
+      };
 
-      const applyRule = value => {
-        addVariable(value);
+      const applyRule = (value: Rule['value']) => {
+        let variableDef: VariableDefinition;
 
+        if (variableName) {
+          variableDef = addVariable(value);
+        }
+
+        const resolvedValue = variableDef?.prop ? `var(${variableDef.prop})` : value;
         for (const { prop, selector } of properties) {
           for (const cssProp of coerceArray(prop)) {
             tokensMap.property = cssProp;
-            addSelector(cssProp, selector);
+            addSelector(cssProp, selector, resolvedValue);
           }
         }
       };

@@ -1,6 +1,6 @@
 {
   "name": "@ngneat/variabless",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Transform JS/TS/JSON to css variables 💎",
   "keywords": [
     "css",

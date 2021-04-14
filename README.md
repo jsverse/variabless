@@ -15,6 +15,13 @@ Variabless allows you to manage application wide css variables in a single sourc
 Variabless will convert a JS/TS/JSON definitions file to css variables allowing you to use those values both 
 in js and css files.
 
+## Why Variabless?
+Ever since the introduction of css variables, supporting themes in your app and customizing styles became much more accessible. 
+While developing several apps we noticed a reoccurring need: accessing the theme and variables in our 
+ts files for various reasons (e.g. passing colors to highcharts). 
+At that point, it was either managing two sets on theme definitions one in css and one in ts, or find a solution to
+centralize our theme and make it accessible for both, thus Variabless was born. 
+
 ## Features
 
 ✅ &nbsp;Convert js to css variables.  
@@ -38,6 +45,7 @@ in js and css files.
     - [Resolver function](#resolver-function)
   - [appendVariablesTo](#appendvariablesto---string)
   - [properties](#properties---propertyconfig--propertyconfig)
+- [Generate Independent Properties](#generate-independent-properties)  
 
 ## Installation
 Install the Variabless package via yarn or npm by running:
@@ -96,7 +104,7 @@ The Variabless source file exports a map of rules which defines how to create th
 export const coreStyles: Record<string, Rule> = {
   myVariable: {
     value: string | object,
-    variableName: string | Resolver,
+    variableName?: string | Resolver,
     appendVariablesTo?: string,
     properties?: PropertyConfig[],
   },
@@ -273,24 +281,77 @@ Will produce the following css:
 }
 
 body {
+
   .font-family {
     font-family: var(--font-family);  
   }  
+  
   .b1-color {
     color: var(--b1-color);  
-  }  
+  }
+  
   .b2-color {
     color: var(--b2-color);  
-  }  
+  } 
+  
   .b1-bg{
     background-color: var(--b1-color);  
-  }  
+  }
+  
   .b2-bg {
     background-color: var(--b2-color);  
   }
    
 }
 ``` 
+
+### Generate Independent Properties
+You can also generate properties that don't relay on variables by not providing the `variableName` property.  
+The following rule:
+
+```typescript
+{
+  fontWeight: {
+    properties: [
+      {
+        prop: 'font-weight',
+        selector: '.font-weight-:valueKey'
+      }
+    ], 
+    value: {
+      regular: 'normal',
+      medium: 500,
+      bold: 'bold',
+      custom: 'var(--foo)'
+    }
+  }
+}
+```
+
+Will produce the following css:
+
+```css
+body {
+
+  .font-weight-regular {
+    font-weight: normal;  
+  }
+  
+  .font-weight-medium {
+    font-weight: 500;
+  }
+  
+  .font-weight-bold {
+    font-weight: bold;
+  }
+  
+  .font-weight-custom {
+    font-weight: var(--foo);
+  }
+  
+}
+``` 
+
 
 ## Contributors ✨
 
@@ -302,7 +363,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/shaharkazaz"><img src="https://avatars2.githubusercontent.com/u/17194830?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shahar Kazaz</b></sub></a><br /><a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Code">💻</a> <a href="#content-shaharkazaz" title="Content">🖋</a> <a href="#design-shaharkazaz" title="Design">🎨</a> <a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Documentation">📖</a> <a href="#example-shaharkazaz" title="Examples">💡</a> <a href="#ideas-shaharkazaz" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-shaharkazaz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://www.netbasal.com/"><img src="https://avatars1.githubusercontent.com/u/6745730?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Netanel Basal</b></sub></a><br /><a href="#ideas-NetanelBasal" title="Ideas, Planning, & Feedback">🤔</a> <a href="#mentoring-NetanelBasal" title="Mentoring">🧑‍🏫</a></td>
+    <td align="center"><a href="https://www.netbasal.com/"><img src="https://avatars1.githubusercontent.com/u/6745730?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Netanel Basal</b></sub></a><br /><a href="https://github.com/ngneat/variabless/commits?author=NetanelBasal" title="Code">💻</a> <a href="#ideas-NetanelBasal" title="Ideas, Planning, & Feedback">🤔</a> <a href="#mentoring-NetanelBasal" title="Mentoring">🧑‍🏫</a></td>
   </tr>
 </table>
 
