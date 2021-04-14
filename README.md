@@ -30,7 +30,7 @@ centralize our theme and make it accessible for both, thus Variabless was born.
 ✅ &nbsp;Webpack Plugin.  
 ✅ &nbsp;Easy CSS rules creation.  
 
-👉 &nbsp;Try it in our [playground]().
+👉 &nbsp;Try it in our [playground](https://ngneat.github.io/variabless/).
 
 ## Table of content
 
