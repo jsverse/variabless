@@ -42,8 +42,8 @@ export const coreStyles: Record<string, Rule> = {
       regular: 'normal',
       medium: 500,
       bold: 'bold',
+      custom: 'var(--foo)',
     },
-    variableName: 'font-:valueKey',
   },
   fontSize: {
     properties: [{

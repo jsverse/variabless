@@ -6,18 +6,25 @@
   width: 100%;
 }
 
+.icons {
+  right: 20px;
+  top: 0;
+}
+
+.github {
+  border: none;
+  height: 30px;
+  width: 150px;
+  margin-left: 10px;
+}
+
 .logo {
   flex-basis: 9%;
   max-height: 9%;
   margin: 44px 0 40px 0;
-
-  & > div {
-    position: relative;
-  }
 }
 
 .playground {
-  position: absolute;
   color: white;
   bottom: -70px;
   transform: rotate(-10deg);
