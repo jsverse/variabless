@@ -16,17 +16,17 @@ Variabless will convert a JS definitions file to CSS variables or classes, allow
 
 ## Why Variabless?
 Since introducing CSS variables, supporting themes in your app, and customizing styles became much more convenient. 
-While developing several apps, we noticed a reoccurring need. We need to refer to the theme and variables in our TS files for various reasons. For example, we are passing colors and fonts to libraries such as highcharts and grid). 
+While developing several apps, we noticed a reoccurring need. We need to refer to the theme and variables in our TS files for various reasons. For example, we are passing colors and fonts to libraries such as highcharts and grid. 
 
 At that point, it was either managing two sets of theme definitions, one in CSS and one in TS, or found a solution to centralize our theme and make it accessible for both; thus, Variabless was born. 
 
 ## Features
 
-✅ &nbsp;Convert JS to CSS variables
-✅ &nbsp;Single Source of Styling Across the App
-✅ &nbsp;Supports JS, TS and JSON file formats
-✅ &nbsp;Webpack Plugin
-✅ &nbsp;Easy CSS Rules Creation
+✅ &nbsp;Convert JS to CSS variables  
+✅ &nbsp;Single Source of Styling Across the App  
+✅ &nbsp;Supports JS, TS and JSON file formats  
+✅ &nbsp;Webpack Plugin  
+✅ &nbsp;Easy CSS Rules Creation  
 
 👉 &nbsp;Try it in our [playground](https://ngneat.github.io/variabless/).
 
