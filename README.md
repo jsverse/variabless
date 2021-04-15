@@ -11,16 +11,14 @@
     <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square"></a>
 </p>
 
-Variabless allows you to manage application wide css variables in a single source of truth. 
-Variabless will convert a JS/TS/JSON definitions file to css variables allowing you to use those values both 
-in js and css files.
+Variabless allows you to manage application-wide CSS styles and variables in a single source of truth manner. 
+Variabless will convert a JS definitions file to CSS variables or classes, allowing you to use those values in JS and CSS files.
 
 ## Why Variabless?
-Ever since the introduction of css variables, supporting themes in your app and customizing styles became much more accessible. 
-While developing several apps we noticed a reoccurring need: accessing the theme and variables in our 
-ts files for various reasons (e.g. passing colors to highcharts). 
-At that point, it was either managing two sets on theme definitions one in css and one in ts, or find a solution to
-centralize our theme and make it accessible for both, thus Variabless was born. 
+Since introducing CSS variables, supporting themes in your app, and customizing styles became much more convenient. 
+While developing several apps, we noticed a reoccurring need. We need to refer to the theme and variables in our TS files for various reasons. For example, we are passing colors and fonts to libraries such as highcharts and grid). 
+
+At that point, it was either managing two sets of theme definitions, one in CSS and one in TS, or found a solution to centralize our theme and make it accessible for both; thus, Variabless was born. 
 
 ## Features
 
