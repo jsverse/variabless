@@ -24,11 +24,11 @@ centralize our theme and make it accessible for both, thus Variabless was born.
 
 ## Features
 
-✅ &nbsp;Convert js to css variables.  
-✅ &nbsp;Single source of styling across the app.  
+✅ &nbsp;Convert JS to CSS variables.  
+✅ &nbsp;Single Source of Styling Across the App.  
 ✅ &nbsp;Supports JS, TS and JSON file formats.  
 ✅ &nbsp;Webpack Plugin.  
-✅ &nbsp;Easy CSS rules creation.  
+✅ &nbsp;Easy CSS Rules Creation.  
 
 👉 &nbsp;Try it in our [playground](https://ngneat.github.io/variabless/).
 
