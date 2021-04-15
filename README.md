@@ -22,11 +22,11 @@ At that point, it was either managing two sets of theme definitions, one in CSS 
 
 ## Features
 
-✅ &nbsp;Convert JS to CSS variables.  
-✅ &nbsp;Single Source of Styling Across the App.  
-✅ &nbsp;Supports JS, TS and JSON file formats.  
-✅ &nbsp;Webpack Plugin.  
-✅ &nbsp;Easy CSS Rules Creation.  
+✅ &nbsp;Convert JS to CSS variables
+✅ &nbsp;Single Source of Styling Across the App
+✅ &nbsp;Supports JS, TS and JSON file formats
+✅ &nbsp;Webpack Plugin
+✅ &nbsp;Easy CSS Rules Creation
 
 👉 &nbsp;Try it in our [playground](https://ngneat.github.io/variabless/).
 
