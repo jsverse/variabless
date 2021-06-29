@@ -49,8 +49,8 @@ At that point, it was either managing two sets of theme definitions, one in CSS 
 Install the Variabless package via yarn or npm by running:
 
 ```bash
-npm i -D variabless
-yarn add -D variabless
+npm i -D @ngneat/variabless
+yarn add -D @ngneat/variabless
 ```
 
 ## Usage
